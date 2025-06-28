@@ -1,1 +1,94 @@
+body{
+    display: flex;
+}
+
+.formField{
+    flex: 1;         /* egyenlő arány */
+    border: 2px solid #b65757; /* csak a láthatóság kedvéért */
+}
+
+.taskField{
+    flex: 2;         /* egyenlő arány */
+    border: 2px solid #b65757; /* csak a láthatóság kedvéért */
+
+    display: flex;
+}
+
+.activeTask{
+    flex: 1;         /* egyenlő arány */
+    border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+}
+
+.doneTask{
+    flex: 1;         /* egyenlő arány */
+    border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+}
+
+
+
+.hidden {
+  display: none;
+}
+.vertical{
+    flex-direction: row;
+}
+
+@media (max-width: 900px){
+    .vertical{
+    flex-direction: column;
+    }
+    .formField{
+    flex: 1;
+    }
+    .taskField{
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px){
+    .vertical{
+    flex-direction: row;
+    }
+    body{
+        flex-direction: column;
+    }
+    
+    .taskField{
+        flex-direction: column;
+    }
+
+    .activeTask{
+        flex: 1;         /* egyenlő arány */
+        border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+    }
+
+    .doneTask{
+        flex: 1;         /* egyenlő arány */
+        border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+    }
+}
+
+form{
+    background-color: aquamarine;
+    width: auto;
+    height: auto;
+}
+
+form * {
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+form #importance{
+    display: flex;
+    flex-direction: column;
+}
+
+task-card{
+    border-radius: 50%;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(187, 9, 218);
+}
+
 
