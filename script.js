@@ -1,35 +1,63 @@
-togglePanels(false);
+
 
 const toggleButtonClose = document.getElementById('toggle-button-close');
 toggleButtonClose.addEventListener('click', () => {
-    togglePanels(false);
+    closePanel();
 })
+
+function closePanel(){
+    togglePanels(false);
+    toggleButtonClose.classList.add('hidden');
+    toggleButtonOpen.classList.remove('hidden');
+}
+
 
 const toggleButtonOpen = document.getElementById('toggle-button-open');
 toggleButtonOpen.addEventListener('click', () => {
-    togglePanels(true);
+    openPanel();
 })
 
-const form = document.getElementById('taskAdder');
+function openPanel(){
+    togglePanels(true);
+    toggleButtonClose.classList.remove('hidden');
+    toggleButtonOpen.classList.add('hidden');
+}
 
+
+const form = document.getElementById('taskAdder');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
   const data = Object.fromEntries(new FormData(e.target).entries());
-  console.log(data);
-  const card = createTaskCard(data);
-  document.getElementsByClassName('activeTask')[0].appendChild(card);
 
-  e.target.reset(); // ürítjük a formot
+  placeCardOnPage(data);
+  
+  e.target.reset();
 });
 
 
-function createTaskCard({ title, description, date, time, type, priority, color, hours, reminder }) {
-    
+function placeCardOnPage(data){
+        const card = createTaskCard(data);
+
+        const activeGroup = document.getElementsByClassName('activeTask')[0];
+        const doneGroup = document.getElementsByClassName('doneTask')[0];
+
+        if(data.isDone){
+            doneGroup.appendChild(card);
+        }else{
+            activeGroup.appendChild(card);
+        }
+}
+
+
+function createTaskCard({ title, description, date, time, type, priority, color, hours, reminder, isDone }) {
+
+    const isChecked = isDone ? 'checked' : '';
+
     const card = document.createElement('div');
     card.innerHTML = `
         <label>
-            <input type="checkbox" class="done-toggle"> Kész
+            <input type="checkbox" class="done-toggle" ${isChecked}> Kész
         </label>
 
         <h2 class="card-title">${title}</h2>
@@ -86,8 +114,6 @@ function createTaskCard({ title, description, date, time, type, priority, color,
 }
 
 
-
-
 function togglePanels(openAction) {
   const form = document.getElementsByClassName('formField')[0];
   const tasks = document.getElementsByClassName('taskField')[0];
@@ -101,3 +127,65 @@ function togglePanels(openAction) {
     tasks.classList.remove('form-opened');
   }
 }
+
+function saveAllTasksToJsonString() {
+    const taskElements = document.querySelectorAll('.task-card');
+
+    const tasks = Array.from(taskElements).map(card => ({
+        title: card.dataset.title,
+        description: card.dataset.description,
+        date: card.dataset.date,
+        time: card.dataset.time,
+        type: card.dataset.type,
+        priority: card.dataset.priority,
+        color: card.dataset.color,
+        hours: card.dataset.hours,
+        reminder: card.dataset.reminder,
+        status: card.parentElement.classList.contains('doneTask') ? 'done' : 'active'
+    }));
+    const taskString = JSON.stringify(tasks);
+    return taskString;
+}
+
+function loadTasksFromJsonString(jsonString) {
+    // Először töröljük az aktuális taskokat a felületről
+    document.querySelector('.activeTask').innerHTML = '';
+    document.querySelector('.doneTask').innerHTML = '';
+
+    // Átalakítjuk a JSON-stringet tömbbé
+    const tasks = JSON.parse(jsonString);
+
+    tasks.forEach(task => {
+        const card = createTaskCard(task);
+        
+        if (task.status === 'done') {
+            document.querySelector('.doneTask').appendChild(card);
+        } else {
+            document.querySelector('.activeTask').appendChild(card);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+localStorage.setItem('tasks', JSON.stringify(tasks));
+
+//itt kezdődjenek az oldal betöltésekor történő események!!
+
+togglePanels(false);
+
+
+
+
+
+
+
+
