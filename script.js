@@ -27,6 +27,10 @@ function createTaskCard({ title, description, date, time, type, priority, color,
     
     const card = document.createElement('div');
     card.innerHTML = `
+        <label>
+            <input type="checkbox" class="done-toggle"> Kész
+        </label>
+
         <h2 class="card-title">${title}</h2>
         <p><strong> ${type} </strong></p>
 
@@ -38,14 +42,31 @@ function createTaskCard({ title, description, date, time, type, priority, color,
             <span>${time}</span>
             <span>${hours} h</span>
         </div>
+        <button class="delete-button">🗑️ Törlés</button>
     `;
+
+    const toggle = card.querySelector('.done-toggle');
+    toggle.addEventListener('change', (e) => {
+        const doneContainer = document.querySelector('.doneTask');
+        const activeContainer = document.querySelector('.activeTask');
+        if (e.target.checked) {
+            doneContainer.appendChild(card);
+        } else {
+            activeContainer.appendChild(card);
+        }
+});
+
     card.className = 'task-card';
 
     card.style.borderWidth = '2px';
     if (color && /^#[0-9A-Fa-f]{6}$/.test(color)) {
-        alert("Helyes szín");
         card.style.border = `10px solid ${color}`;
     }
+    const deleteBtn = card.querySelector('.delete-button');
+        deleteBtn.addEventListener('click', () => {
+        card.remove();
+    });
+
     alert("Túlment");
 
     
@@ -62,6 +83,8 @@ function createTaskCard({ title, description, date, time, type, priority, color,
 
     return card;
 }
+
+
 
 
 function togglePanels(openAction) {

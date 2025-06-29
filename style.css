@@ -4,6 +4,7 @@
 }
 .page-title{
     display: block;
+    text-align: center;
 }
 
 .formField{
@@ -118,4 +119,9 @@ task-card{
     width: 100%;
     height: fit-content;
     background-color: rgb(187, 9, 218);
+}
+
+task-card .done-toggle{
+  transform: scale(1.2);
+  cursor: pointer;
 }
