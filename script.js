@@ -1,3 +1,4 @@
+togglePanels(false);
 
 const toggleButtonClose = document.getElementById('toggle-button-close');
 toggleButtonClose.addEventListener('click', () => {
