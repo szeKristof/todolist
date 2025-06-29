@@ -71,9 +71,9 @@ function togglePanels(openAction) {
   // Toggle hidden osztály panelA-n
   if(openAction){
     form.classList.remove('hidden');
-    tasks.classList.add('vertical');
+    tasks.classList.add('form-opened');
   }else{
     form.classList.add('hidden');
-    tasks.classList.remove('vertical');
+    tasks.classList.remove('form-opened');
   }
 }

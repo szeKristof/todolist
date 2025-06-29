@@ -1,10 +1,16 @@
-body{
+.main-area{
     display: flex;
+    min-width: 298px;
+}
+.page-title{
+    display: block;
 }
 
 .formField{
+    
     flex: 1;         /* egyenlő arány */
-    border: 2px solid #b65757; /* csak a láthatóság kedvéért */
+    border: 2px solid #f10707; /* csak a láthatóság kedvéért */
+    
 }
 
 .taskField{
@@ -29,12 +35,12 @@ body{
 .hidden {
   display: none;
 }
-.vertical{
+.form-opened{
     flex-direction: row;
 }
 
 @media (max-width: 900px){
-    .vertical{
+    .form-opened{
     flex-direction: column;
     }
     .formField{
@@ -46,10 +52,11 @@ body{
 }
 
 @media (max-width: 600px){
-    .vertical{
+    .form-opened{
     flex-direction: row;
+    display: none;
     }
-    body{
+    .main-area{
         flex-direction: column;
     }
     
@@ -70,13 +77,35 @@ body{
 
 form{
     background-color: aquamarine;
-    width: auto;
+    width: 100%;
     height: auto;
+    font-family: 'Nunito', sans-serif;
+    font-size: xx-large;
 }
 
 form * {
     display: block;
-    margin-bottom: 0.3em;
+    margin-bottom: 2em;
+    margin-left: 0.3em;
+}
+form label{
+    margin-bottom: 0.2em;
+}
+
+form > input, form > textarea, form > select {
+    width: 90%;
+    border: 1px solid #0e51a3;
+    line-height: 2.5em;
+    border-radius: 0.5em;
+    font-family: inherit;
+}
+
+#taskDate, #taskTime, #taskColor, #taskHours, #taskReminder{
+    width: 50%
+}
+
+#taskReminder{
+    
 }
 
 form #importance{
@@ -90,5 +119,3 @@ task-card{
     height: fit-content;
     background-color: rgb(187, 9, 218);
 }
-
-

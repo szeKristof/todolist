@@ -7,96 +7,102 @@
     <title>TO-DO List</title>
     <link href="style.css" rel="stylesheet">
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
+    <h1 class="page-title">
+        TO-DO List Application
+    </h1>
 
-    <button id="toggle-button-close">Close</button>
-    <button id="toggle-button-open">Open</button>
 
-    <div class="formField">
-        <form action="" method="post" id="taskAdder">
-            <label for="taskTitle">Feladat címe</label>
-            <input type="text" name="title" id="taskTitle">
+    <div class="main-area">
+        <button id="toggle-button-close">Close</button>
+        <button id="toggle-button-open">Open</button>
 
-            <label for="taskDescription">Feladat leírása</label>
-            <textarea name="description" id="taskDescription"></textarea>
+        <div class="formField">
+            <form action="" method="post" id="taskAdder">
+                <label for="taskTitle">Feladat címe</label>
+                <input type="text" name="title" id="taskTitle">
 
-            <label for="taskDate">Határidő dátuma</label>
-            <input type="date" name="date" id="taskDate">
+                <label for="taskDescription">Feladat leírása</label>
+                <textarea name="description" id="taskDescription"></textarea>
 
-            <label for="taskTime">Határidő időpontja</label>
-            <input type="time" name="time" id="taskTime">
+                <label for="taskDate">Határidő dátuma</label>
+                <input type="date" name="date" id="taskDate">
 
-            
-            <div class="taskOptions">
-                <label for="taskType">Munkakörnyezet</label>
-                <select id="taskType" name="type">
-                    <option>Munkahelyi</option>
-                    <option>Iskolai</option>
-                    <option>Személyes</option>
-                    <option>Családi</option>
-                    <option>Hobbi</option>
-                </select>
+                <label for="taskTime">Határidő időpontja</label>
+                <input type="time" name="time" id="taskTime">
+
+                
+                <div class="taskOptions">
+                    <label for="taskType">Munkakörnyezet</label>
+                    <select id="taskType" name="type">
+                        <option>Munkahelyi</option>
+                        <option>Iskolai</option>
+                        <option>Személyes</option>
+                        <option>Családi</option>
+                        <option>Hobbi</option>
+                    </select>
+                </div>
+
+                <fieldset id="importance">
+                    <legend>Fontosság</legend>
+
+                        <label>
+                        <input type="radio" name="priority" value="0">
+                        Extra Alacsony
+                        </label>
+
+                        <label>
+                        <input type="radio" name="priority" value="1">
+                        Alacsony
+                        </label>
+
+                        <label>
+                        <input type="radio" name="priority" value="2">
+                        Közepes
+                        </label>
+
+                        <label>
+                        <input type="radio" name="priority" value="3">
+                        Magas
+                        </label>
+
+                        <label>
+                        <input type="radio" name="priority" value="4">
+                        Extra Magas
+                        </label>
+
+                </fieldset>
+
+                <label for="taskColor">Feladat színe</label>
+                <input type="color" id="taskColor" name="color">
+                
+                <!-- 
+                <label for="taskImage">Kép feltöltése</label>
+                <input type="file" id="taskImage" name="taskImage" accept="image/*"> -->
+                
+                <label for="taskHours">Várható időtartam(órában)</label>
+                <input type="number" min="1" max="100" id="taskHours" name="hours">
+
+                <label for="taskReminder">Kérek emlékeztetőt</label>
+                <input type="checkbox" id="taskReminder" name="reminder">
+
+                <button type="submit">Feladat hozzáadása</button>
+                <button type="reset">Mezők kiürítése</button>
+
+            </form>
+        </div>
+
+        <div class="taskField">
+            <div class="activeTask" style="background-color: lightblue;">
+                active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>
             </div>
-
-            <fieldset id="importance">
-                <legend>Fontosság</legend>
-
-                    <label>
-                    <input type="radio" name="priority" value="0">
-                    Extra Alacsony
-                    </label>
-
-                    <label>
-                    <input type="radio" name="priority" value="1">
-                    Alacsony
-                    </label>
-
-                    <label>
-                    <input type="radio" name="priority" value="2">
-                    Közepes
-                    </label>
-
-                    <label>
-                    <input type="radio" name="priority" value="3">
-                    Magas
-                    </label>
-
-                    <label>
-                    <input type="radio" name="priority" value="4">
-                    Extra Magas
-                    </label>
-
-            </fieldset>
-
-            <label for="taskColor">Feladat színe</label>
-            <input type="color" id="taskColor" name="color">
-            
-            <!-- 
-            <label for="taskImage">Kép feltöltése</label>
-            <input type="file" id="taskImage" name="taskImage" accept="image/*"> -->
-            
-            <label for="taskHours">Várható időtartam(órában)</label>
-            <input type="number" min="1" max="100" id="taskHours" name="hours">
-
-            <label for="taskReminder">Kérek emlékeztetőt</label>
-            <input type="checkbox" id="taskReminder" name="reminder">
-
-            <button type="submit">Feladat hozzáadása</button>
-            <button type="reset">Mezők kiürítése</button>
-
-        </form>
-    </div>
-
-    <div class="taskField">
-        <div class="activeTask" style="background-color: lightblue;">
-            active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>active <br>
-        </div>
-        <div class="doneTask" style="background-color: lightgreen;">
-            done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>
+            <div class="doneTask" style="background-color: lightgreen;">
+                done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>done <br>
+            </div>
         </div>
     </div>
-    
 
 
 
