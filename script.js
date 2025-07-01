@@ -148,10 +148,12 @@ function saveAllTasksToJsonString() {
 }
 
 function loadTasksFromJsonString(jsonString) {
+    console.log('loadtask entered');
     // Először töröljük az aktuális taskokat a felületről
-    document.querySelector('.activeTask').innerHTML = '';
-    document.querySelector('.doneTask').innerHTML = '';
+    document.querySelector('.activeTask').innerHTML = 'active <br>active';
+    document.querySelector('.doneTask').innerHTML = 'DONE <br>DONE ';
 
+    console.log('Tasks emtied');
     // Átalakítjuk a JSON-stringet tömbbé
     const tasks = JSON.parse(jsonString);
 
@@ -163,9 +165,50 @@ function loadTasksFromJsonString(jsonString) {
         } else {
             document.querySelector('.activeTask').appendChild(card);
         }
+        console.log('Tasks appended');
     });
 }
 
+function quickSaveContent(){
+    localStorage.setItem('pageContent', saveAllTasksToJsonString());
+    console.log('saved');
+}
+
+function quickLoadContent(){
+    const content = localStorage.getItem('pageContent');
+    console.log('pagecontent?');
+    if(content){
+        loadTasksFromJsonString(content);
+        console.log('pagecontent !');
+    }else{
+        console.log('pagecontent X');
+    }
+    console.log('loaded');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  quickLoadContent();
+  togglePanels(false);
+  console.log('Loaded');
+});
+
+window.addEventListener('beforeunload', () => {
+  quickSaveContent();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    quickSaveContent();
+  }
+});
+
+window.addEventListener('blur', () => {
+  quickSaveContent();
+});
+
+setInterval(() => {
+  quickSaveContent();
+}, 10000); // 10 másodpercenként ment
 
 
 
@@ -176,11 +219,11 @@ function loadTasksFromJsonString(jsonString) {
 
 
 
-localStorage.setItem('tasks', JSON.stringify(tasks));
 
 //itt kezdődjenek az oldal betöltésekor történő események!!
 
-togglePanels(false);
+
+
 
 
 
