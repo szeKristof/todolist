@@ -1,5 +1,7 @@
 kész felirat oldal betöltése után is jól mutassa hogy kész-e a kártya, ne csak a megnyomása után! 
 ne jelenjen meg a nyitás/zárás gomb is betöltés után! működjön jól mindig! 
 utánanézni hogy console-ban mi az az RGB format hiba! 
+h ne látszódjon az óránál, ha nincs megadva! 
+felülre kerüljön az új elem, ezt megoldani! 
 ezután jöhet a css csinosítása! 
 aztán a chatGPT továbbfejlesztési javaslatai! 
