@@ -1,4 +1,17 @@
+const activeGroup = document.querySelector('.activeTask');
+const doneGroup = document.querySelector('.doneTask');
 
+const forms = document.querySelector('.formField');
+const tasks = document.querySelector('.taskField');
+const autoSave = document.getElementById('auto-save');
+
+autoSave.addEventListener('change', (e) => {
+    if(e.target.checked){
+        localStorage.setItem('autosave', 'true');
+    }else{
+        localStorage.setItem('autosave', 'false');
+    }
+});
 
 const toggleButtonClose = document.getElementById('toggle-button-close');
 toggleButtonClose.addEventListener('click', () => {
@@ -6,11 +19,12 @@ toggleButtonClose.addEventListener('click', () => {
 })
 
 function closePanel(){
-    togglePanels(false);
+    forms.classList.add('hidden');
+    tasks.classList.remove('form-opened');
+
     toggleButtonClose.classList.add('hidden');
     toggleButtonOpen.classList.remove('hidden');
 }
-
 
 const toggleButtonOpen = document.getElementById('toggle-button-open');
 toggleButtonOpen.addEventListener('click', () => {
@@ -18,46 +32,46 @@ toggleButtonOpen.addEventListener('click', () => {
 })
 
 function openPanel(){
-    togglePanels(true);
+    forms.classList.remove('hidden');
+    tasks.classList.add('form-opened');
+
     toggleButtonClose.classList.remove('hidden');
     toggleButtonOpen.classList.add('hidden');
 }
 
-
 const form = document.getElementById('taskAdder');
 form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const data = Object.fromEntries(new FormData(e.target).entries());
-
-  placeCardOnPage(data);
-  
-  e.target.reset();
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target).entries());
+    data = extendMissingObjectParts(data);
+    createAndPlaceTaskCard(data, false);
+    e.target.reset();
 });
 
-
-function placeCardOnPage(data){
-        const card = createTaskCard(data);
-
-        const activeGroup = document.getElementsByClassName('activeTask')[0];
-        const doneGroup = document.getElementsByClassName('doneTask')[0];
-
-        if(data.isDone){
-            doneGroup.appendChild(card);
-        }else{
-            activeGroup.appendChild(card);
-        }
+//gets data from the form transformed to object and returns its extended version to match every property of the card
+function extendMissingObjectParts(submitObject) {
+    const validObject = {
+        title: submitObject.title || '',
+        description: submitObject.description || '',
+        date: submitObject.date || '',
+        time: submitObject.time || '',
+        type: submitObject.type || '',
+        priority: parseInt(submitObject.priority || '0', 10),
+        color: submitObject.color || '#000000',
+        hours: parseInt(submitObject.hours || '0', 10), // egész számként kezelve
+        reminder: submitObject.reminder === 'on',        // checkbox → boolean
+        status: submitObject.isDone === 'on'             // checkbox → boolean
+    };
+    return validObject;
 }
 
-
-function createTaskCard({ title, description, date, time, type, priority, color, hours, reminder, isDone }) {
-
-    const isChecked = isDone ? 'checked' : '';
+//gets a js cardValid object in parameter and returns a complete html element
+function createAndPlaceTaskCard({ title, description, date, time, type, priority, color, hours, reminder, status }, isRetrieve = true) {
 
     const card = document.createElement('div');
     card.innerHTML = `
         <label>
-            <input type="checkbox" class="done-toggle" ${isChecked}> Kész
+            <input type="checkbox" class="done-toggle" > Kész
         </label>
 
         <h2 class="card-title">${title}</h2>
@@ -73,20 +87,26 @@ function createTaskCard({ title, description, date, time, type, priority, color,
         </div>
         <button class="delete-button">🗑️ Törlés</button>
     `;
-
+    
     const toggle = card.querySelector('.done-toggle');
     toggle.addEventListener('change', (e) => {
-        const doneContainer = document.querySelector('.doneTask');
-        const activeContainer = document.querySelector('.activeTask');
         if (e.target.checked) {
-            doneContainer.appendChild(card);
+            doneGroup.prepend(card);
+            card.dataset.status = 'true';
         } else {
-            activeContainer.appendChild(card);
+            activeGroup.prepend(card);
+            card.dataset.status = 'false';
         }
-});
+        quickSave();
+    });
+    if(status){
+        toggle.checked = true;
+    }else{
+        toggle.checked = false;
+    }
+    toggle.dispatchEvent(new Event('change', { bubbles: true }));
 
     card.className = 'task-card';
-
     card.style.borderWidth = '2px';
     if (color && /^#[0-9A-Fa-f]{6}$/.test(color)) {
         card.style.border = `10px solid ${color}`;
@@ -94,40 +114,36 @@ function createTaskCard({ title, description, date, time, type, priority, color,
     const deleteBtn = card.querySelector('.delete-button');
         deleteBtn.addEventListener('click', () => {
         card.remove();
+        quickSave();
     });
-
-    alert("Túlment");
-
     
-    card.dataset.title = title || '';
-    card.dataset.description = description || '';
-    card.dataset.date = date || '';
-    card.dataset.time = time || '';
-    card.dataset.type = type || '';
-    card.dataset.priority = priority || '';
-    card.dataset.color = color || '';
-    card.dataset.hours = hours || '';
-    card.dataset.reminder = reminder ? 'true' : 'false';
+    card.dataset.title = title;
+    card.dataset.description = description;
+    card.dataset.date = date;
+    card.dataset.time = time;
+    card.dataset.type = type;
+    card.dataset.priority = priority.toString();
+    card.dataset.color = color;
+    card.dataset.hours = hours.toString();
+    card.dataset.reminder = reminder.toString(); // 'true' vagy 'false'
+    card.dataset.status = status.toString();     // 'true' vagy 'false'
 
-
-    return card;
+    if(status){
+        isRetrieve ? doneGroup.appendChild(card) : doneGroup.prepend(card);
+    }else{
+        isRetrieve ? activeGroup.appendChild(card) : activeGroup.prepend(card);
+    }
+    quickSave();
 }
 
 
-function togglePanels(openAction) {
-  const form = document.getElementsByClassName('formField')[0];
-  const tasks = document.getElementsByClassName('taskField')[0];
-
-  // Toggle hidden osztály panelA-n
-  if(openAction){
-    form.classList.remove('hidden');
-    tasks.classList.add('form-opened');
-  }else{
-    form.classList.add('hidden');
-    tasks.classList.remove('form-opened');
-  }
+//returns a json valid formatted string from the given object
+function stringFromObject(object){
+    const string = JSON.stringify(object);
+    return string;
 }
 
+//Collects all tasks from page and returns in a string
 function saveAllTasksToJsonString() {
     const taskElements = document.querySelectorAll('.task-card');
 
@@ -141,94 +157,80 @@ function saveAllTasksToJsonString() {
         color: card.dataset.color,
         hours: card.dataset.hours,
         reminder: card.dataset.reminder,
-        status: card.parentElement.classList.contains('doneTask') ? 'done' : 'active'
+        status: card.dataset.status,
     }));
-    const taskString = JSON.stringify(tasks);
-    return taskString;
+    return stringFromObject(tasks);
 }
 
+//returns an object from the given json valid formatted string
+function objectFromString(string){
+    const object = JSON.parse(string);
+    return object;
+}
+
+//get a string with all the content in it and builds up the pagecontent
 function loadTasksFromJsonString(jsonString) {
-    console.log('loadtask entered');
     // Először töröljük az aktuális taskokat a felületről
     document.querySelector('.activeTask').innerHTML = 'active <br>active';
     document.querySelector('.doneTask').innerHTML = 'DONE <br>DONE ';
 
-    console.log('Tasks emtied');
     // Átalakítjuk a JSON-stringet tömbbé
-    const tasks = JSON.parse(jsonString);
-
+    const tasks = objectFromString(jsonString);
     tasks.forEach(task => {
-        const card = createTaskCard(task);
-        
-        if (task.status === 'done') {
-            document.querySelector('.doneTask').appendChild(card);
-        } else {
-            document.querySelector('.activeTask').appendChild(card);
-        }
-        console.log('Tasks appended');
+        task.status = (task.status === 'true');
+        task.reminder = (task.reminder === 'true');
+        task.priority = parseInt(task.priority, 10) || 0;
+        task.hours = parseInt(task.hours, 10) || 0;
+        createAndPlaceTaskCard(task);
     });
 }
 
-function quickSaveContent(){
-    localStorage.setItem('pageContent', saveAllTasksToJsonString());
-    console.log('saved');
+//saves the content of the page in localstorage
+function quickSave(){
+    if(autoSave.checked){
+        localStorage.setItem('pageContent', saveAllTasksToJsonString());
+        console.log('saved');
+    }
 }
 
-function quickLoadContent(){
+//loads the content of the page from localstorage
+function quickLoad(){
     const content = localStorage.getItem('pageContent');
-    console.log('pagecontent?');
     if(content){
         loadTasksFromJsonString(content);
-        console.log('pagecontent !');
-    }else{
-        console.log('pagecontent X');
     }
+
+    const autosave = localStorage.getItem('autosave');
+    if(autosave === 'true'){
+        autoSave.checked = true;
+    }
+    autoSave.dispatchEvent(new Event('change', { bubbles: true }));
+
     console.log('loaded');
 }
 
+
+//save and load event handlers
 window.addEventListener('DOMContentLoaded', () => {
-  quickLoadContent();
-  togglePanels(false);
-  console.log('Loaded');
+  quickLoad();
+  closePanel();
 });
 
 window.addEventListener('beforeunload', () => {
-  quickSaveContent();
+  quickSave();
 });
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    quickSaveContent();
+    quickSave();
   }
 });
 
 window.addEventListener('blur', () => {
-  quickSaveContent();
+  quickSave();
 });
 
 setInterval(() => {
-  quickSaveContent();
+  quickSave();
 }, 10000); // 10 másodpercenként ment
-
-
-
-
-
-
-
-
-
-
-
-//itt kezdődjenek az oldal betöltésekor történő események!!
-
-
-
-
-
-
-
-
-
-
 

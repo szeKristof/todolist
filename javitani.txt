@@ -4,4 +4,5 @@ utánanézni hogy console-ban mi az az RGB format hiba!
 h ne látszódjon az óránál, ha nincs megadva! 
 felülre kerüljön az új elem, ezt megoldani! 
 ezután jöhet a css csinosítása! 
-aztán a chatGPT továbbfejlesztési javaslatai! 
+aztán a chatGPT továbbfejlesztési javaslatai!
+el nem mentett változtatásokat jelezhetné!! extra ötlet! 
