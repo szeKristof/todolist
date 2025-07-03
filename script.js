@@ -3,8 +3,8 @@ const doneGroup = document.querySelector('.doneTask');
 
 const forms = document.querySelector('.formField');
 const tasks = document.querySelector('.taskField');
-const autoSave = document.getElementById('auto-save');
 
+const autoSave = document.getElementById('auto-save');
 autoSave.addEventListener('change', (e) => {
     if(e.target.checked){
         localStorage.setItem('autosave', 'true');
@@ -12,12 +12,15 @@ autoSave.addEventListener('change', (e) => {
         localStorage.setItem('autosave', 'false');
     }
 });
+const saveButton = document.getElementById('save-button');
+saveButton.addEventListener('click', () => {
+    quickSave(true);
+});
 
 const toggleButtonClose = document.getElementById('toggle-button-close');
 toggleButtonClose.addEventListener('click', () => {
     closePanel();
 })
-
 function closePanel(){
     forms.classList.add('hidden');
     tasks.classList.remove('form-opened');
@@ -30,7 +33,6 @@ const toggleButtonOpen = document.getElementById('toggle-button-open');
 toggleButtonOpen.addEventListener('click', () => {
     openPanel();
 })
-
 function openPanel(){
     forms.classList.remove('hidden');
     tasks.classList.add('form-opened');
@@ -186,8 +188,8 @@ function loadTasksFromJsonString(jsonString) {
 }
 
 //saves the content of the page in localstorage
-function quickSave(){
-    if(autoSave.checked){
+function quickSave(forced = false){
+    if(autoSave.checked || forced){
         localStorage.setItem('pageContent', saveAllTasksToJsonString());
         console.log('saved');
     }
@@ -230,7 +232,8 @@ window.addEventListener('blur', () => {
   quickSave();
 });
 
+/* 
 setInterval(() => {
   quickSave();
 }, 10000); // 10 másodpercenként ment
-
+ */
