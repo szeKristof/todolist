@@ -74,6 +74,7 @@ button:disabled {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
     gap: 0.2rem;
     min-height: 10rem;
+    height: min-content;
 }
 
 .activeTask{
