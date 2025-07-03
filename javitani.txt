@@ -7,5 +7,7 @@ ezután jöhet a css csinosítása!
 kártya tökéletesen nézzen ki! elrendezés szempontból!
 form tökéletesen nézzen ki elrendezés szempontból! 
 gombokhoz kis emoji mindegyikhez ami kifejezi a funkcióját! 
+ha van nem mentett elem, akkor azt jelezni mondjuk egyszerű csillag ikonnal!
+létrehozott elemnél fókuszba kerülést és villanást leellenőrizni! 
 aztán a chatGPT továbbfejlesztési javaslatai!
 el nem mentett változtatásokat jelezhetné!! extra ötlet!
