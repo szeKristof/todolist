@@ -5,17 +5,21 @@ const forms = document.querySelector('.formField');
 const tasks = document.querySelector('.taskField');
 
 const autoSave = document.getElementById('auto-save');
-autoSave.addEventListener('change', (e) => {
-    if(e.target.checked){
-        localStorage.setItem('autosave', 'true');
-    }else{
-        localStorage.setItem('autosave', 'false');
-    }
-});
 const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', () => {
     quickSave(true);
 });
+
+autoSave.addEventListener('change', (e) => {
+    if(e.target.checked){
+        localStorage.setItem('autosave', 'true');
+        saveButton.disabled = true;
+    }else{
+        localStorage.setItem('autosave', 'false');
+        saveButton.disabled = false;
+    }
+});
+
 
 const toggleButtonClose = document.getElementById('toggle-button-close');
 toggleButtonClose.addEventListener('click', () => {
@@ -173,8 +177,8 @@ function objectFromString(string){
 //get a string with all the content in it and builds up the pagecontent
 function loadTasksFromJsonString(jsonString) {
     // Először töröljük az aktuális taskokat a felületről
-    document.querySelector('.activeTask').innerHTML = 'active <br>active';
-    document.querySelector('.doneTask').innerHTML = 'DONE <br>DONE ';
+    document.querySelector('.activeTask').innerHTML = '';
+    document.querySelector('.doneTask').innerHTML = '';
 
     // Átalakítjuk a JSON-stringet tömbbé
     const tasks = objectFromString(jsonString);
@@ -232,8 +236,4 @@ window.addEventListener('blur', () => {
   quickSave();
 });
 
-/* 
-setInterval(() => {
-  quickSave();
-}, 10000); // 10 másodpercenként ment
- */
+
