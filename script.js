@@ -50,8 +50,11 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
     let data = Object.fromEntries(new FormData(e.target).entries());
     data = extendMissingObjectParts(data);
-    createAndPlaceTaskCard(data, false);
+    const card = createAndPlaceTaskCard(data, false);
     e.target.reset();
+    closePanel();
+    card.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    card.classList.add('scroll-highlight');
 });
 
 //gets data from the form transformed to object and returns its extended version to match every property of the card
@@ -140,6 +143,7 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
         isRetrieve ? activeGroup.appendChild(card) : activeGroup.prepend(card);
     }
     quickSave();
+    return card;
 }
 
 

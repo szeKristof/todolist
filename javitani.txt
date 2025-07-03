@@ -4,5 +4,8 @@ utánanézni hogy console-ban mi az az RGB format hiba!
 h ne látszódjon az óránál, ha nincs megadva! 
 felülre kerüljön az új elem, ezt megoldani! 
 ezután jöhet a css csinosítása! 
+kártya tökéletesen nézzen ki! elrendezés szempontból!
+form tökéletesen nézzen ki elrendezés szempontból! 
+gombokhoz kis emoji mindegyikhez ami kifejezi a funkcióját! 
 aztán a chatGPT továbbfejlesztési javaslatai!
-el nem mentett változtatásokat jelezhetné!! extra ötlet! 
+el nem mentett változtatásokat jelezhetné!! extra ötlet!

@@ -1,3 +1,10 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  color: #333;
+}
 .main-area{
     display: flex;
     min-width: 298px;
@@ -5,37 +12,78 @@
 .page-title{
     display: block;
     text-align: center;
+    font-size: 2.5rem;
+    margin: 1rem 0;
 }
 
-.formField{
-    
-    flex: 1;         /* egyenlő arány */
-    border: 2px solid #f10707; /* csak a láthatóság kedvéért */
-    
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.taskField{
-    flex: 2;         /* egyenlő arány */
-    border: 2px solid #b65757; /* csak a láthatóság kedvéért */
-
-    display: flex;
+button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 
-.activeTask{
-    flex: 1;         /* egyenlő arány */
-    border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
-
-.doneTask{
-    flex: 1;         /* egyenlő arány */
-    border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
-}
-
-
 
 .hidden {
   display: none;
 }
+
+
+
+.formField{
+
+    background-color: whitesmoke;
+    padding: 0.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0.3rem;
+    flex: 1;         /* egyenlő arány */
+    border: 2px solid #f10707; /* csak a láthatóság kedvéért */
+    border-radius: 1rem;
+}
+
+.taskField{
+    display: flex;
+    flex: 2;         /* egyenlő arány */
+    border: 2px solid #b65757; /* csak a láthatóság kedvéért */
+    border-radius: 1.2rem;
+    padding: 0.2rem;
+    gap: 0.3rem;
+}
+
+.activeTask, .doneTask{
+    display: flex;
+    flex-direction: column;
+    flex: 1;         /* egyenlő arány */
+    border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
+    min-width: 298px;
+    padding: 0.2rem;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    gap: 0.2rem;
+    min-height: 10rem;
+}
+
+.activeTask{
+    background-color: lightblue;
+}
+.doneTask{
+    background-color: lightgreen;
+}
+
+
 .form-opened{
     flex-direction: row;
 }
@@ -64,16 +112,6 @@
     .taskField{
         flex-direction: column;
     }
-
-    .activeTask{
-        flex: 1;         /* egyenlő arány */
-        border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
-    }
-
-    .doneTask{
-        flex: 1;         /* egyenlő arány */
-        border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
-    }
 }
 
 form{
@@ -86,27 +124,32 @@ form{
 
 form * {
     display: block;
-    margin-bottom: 2em;
+    margin-bottom: 0.2em;
     margin-left: 0.3em;
 }
 form label{
-    margin-bottom: 0.2em;
+    display: block;
+    font-weight: bold;
+}
+
+form button{
+    margin-top: 1rem;
 }
 
 form > input, form > textarea, form > select {
-    width: 90%;
-    border: 1px solid #0e51a3;
-    line-height: 2.5em;
-    border-radius: 0.5em;
+    width: 85%;
+    border: 0.1rem solid #0e51a3;
+    border-radius: 3rem;
     font-family: inherit;
+
 }
 
-#taskDate, #taskTime, #taskColor, #taskHours, #taskReminder{
-    width: 50%
+#taskColor, #taskHours, #taskReminder, #isDone{
+    width: 20%
 }
 
-#taskReminder{
-    
+#taskDate, #taskTime{
+    width: 40%;
 }
 
 form #importance{
@@ -114,14 +157,62 @@ form #importance{
     flex-direction: column;
 }
 
-task-card{
-    border-radius: 50%;
-    width: 100%;
+.task-card{
     height: fit-content;
-    background-color: rgb(187, 9, 218);
+    background-color: rgba(245, 245, 245, 0.6);
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
-task-card .done-toggle{
+.task-card .done-toggle{
   transform: scale(1.2);
   cursor: pointer;
 }
+
+.task-card:hover {
+  transform: scaleX(1.01);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.task-card progress {
+  
+    width: 90%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    height: max-content;
+}
+
+.task-card .row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: 0.1rem solid red;
+  color: #dc3545;
+  font-size: 1.2rem;
+  cursor: pointer;
+  float: right;
+}
+
+.task-card .delete-button:hover {
+  color: white;
+  background-color: red;
+}
+
+.scroll-highlight {
+  animation: flash 2s ease;
+}
+
+@keyframes flash {
+  0% { background-color: yellow; }
+  100% { background-color: transparent; }
+}
+
