@@ -6,8 +6,10 @@ felülre kerüljön az új elem, ezt megoldani!
 ezután jöhet a css csinosítása! 
 kártya tökéletesen nézzen ki! elrendezés szempontból!
 form tökéletesen nézzen ki elrendezés szempontból! 
+hoverre kis fehér mezőben jelenjen meg a leírás! 
 gombokhoz kis emoji mindegyikhez ami kifejezi a funkcióját! 
 ha van nem mentett elem, akkor azt jelezni mondjuk egyszerű csillag ikonnal!
 létrehozott elemnél fókuszba kerülést és villanást leellenőrizni! 
 aztán a chatGPT továbbfejlesztési javaslatai!
-el nem mentett változtatásokat jelezhetné!! extra ötlet!
+el nem mentett változtatásokat jelezhetné!! extra ötlet! 
+egész tartalom megjelenhetne kattintásra modal ablakban! aminek van x-je, illetve semleges területen kattintva is kilép! 
