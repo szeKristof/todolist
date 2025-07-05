@@ -68,11 +68,11 @@ button:disabled {
     flex: 1;         /* egyenlő arány */
     border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
     min-width: 298px;
-    padding: 0.2rem;
+    padding: 0.8rem;
     background-color: whitesmoke;
     border-radius: 1rem;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-    gap: 0.2rem;
+    gap: 1rem;
     min-height: 10rem;
     height: min-content;
 }
@@ -124,12 +124,10 @@ form{
 }
 
 form * {
-    display: block;
     margin-bottom: 0.2em;
     margin-left: 0.3em;
 }
 form label{
-    display: block;
     font-weight: bold;
 }
 
@@ -162,8 +160,9 @@ form #importance{
     height: fit-content;
     background-color: rgba(245, 245, 245, 0.6);
     border-radius: 0.8rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.8);
     transition: transform 0.2s ease;
+    padding: 0.8rem;
 }
 
 .task-card .done-toggle{
@@ -175,23 +174,32 @@ form #importance{
   transform: scaleX(1.01);
 }
 
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .card-title {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
+  display: inline;
+  margin: 0;
+  white-space: nowrap;         /* ne törje sort */
+  overflow: hidden;            /* ami nem fér ki, ne lógjon ki */
+  text-overflow: ellipsis;
+}
+
+.card-done-checkbox{
+  min-width: fit-content;
 }
 
 .task-card progress {
-  
-    width: 90%;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    height: max-content;
+    width: 100%;
 }
 
 .task-card .row {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
 }
 
 .delete-button {

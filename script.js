@@ -79,11 +79,12 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
 
     const card = document.createElement('div');
     card.innerHTML = `
-        <label>
-            <input type="checkbox" class="done-toggle" > Kész
-        </label>
-
-        <h2 class="card-title">${title}</h2>
+        <div class=card-header>
+            <h2 class="card-title" title="${title}">${title}</h2>
+            <label class="card-done-checkbox">
+                <input type="checkbox" class="done-toggle" > Kész
+            </label>
+        </div>
         <p><strong> ${type} </strong></p>
 
         <label for="taskprogress" id="cardPriorityLabel">fontosság</label>
@@ -117,9 +118,17 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
 
     card.className = 'task-card';
     card.style.borderWidth = '2px';
+    card.style.border = `10px solid ${color}`;
     if (color && /^#[0-9A-Fa-f]{6}$/.test(color)) {
-        card.style.border = `10px solid ${color}`;
+        card.style.border = `4px solid ${color}`;
     }
+    const bgColor = lightenColor(color, 65);
+    card.style.backgroundColor = `${bgColor}`;
+
+    const cardTitle = card.querySelector('.card-title');
+    cardTitle.style.color = `${color}`;
+    
+    
     const deleteBtn = card.querySelector('.delete-button');
         deleteBtn.addEventListener('click', () => {
         card.remove();
@@ -145,6 +154,26 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
     quickSave();
     return card;
 }
+
+function lightenColor(hex, percent = 70) {
+  // Töröljük a # jelet
+  hex = hex.replace(/^#/, '');
+
+  // Konvertálás RGB értékekre
+  const r = parseInt(hex.substring(0,2), 16);
+  const g = parseInt(hex.substring(2,4), 16);
+  const b = parseInt(hex.substring(4,6), 16);
+
+  // Lighten formula
+  const lighten = (channel) => Math.min(255, Math.floor(channel + (255 - channel) * (percent / 100)));
+
+  const newR = lighten(r);
+  const newG = lighten(g);
+  const newB = lighten(b);
+
+  return `rgb(${newR}, ${newG}, ${newB})`;
+}
+
 
 
 //returns a json valid formatted string from the given object
