@@ -24,8 +24,8 @@ kártyánál border radiusokat összehozni sarkoknál! <
 címet kötelező mezővé tenni formnál! <
 form kinézetét összehozni! 
 jelezni a függvényekben az elmentetlen munkát! <
-nagyobb kiugrás animáció a kártyáknál! 
-animáció a törlés gombnál! 
-felvillanás animációt kicsinosítani! 
+nagyobb kiugrás animáció a kártyáknál! <
+animáció a törlés gombnál! <
+felvillanás animációt kicsinosítani! <
 modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás mellé! 
 lap elhagyásánál mentés modul ablak jelenjen meg! 

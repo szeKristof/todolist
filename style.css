@@ -175,7 +175,7 @@ form #importance{
 }
 
 .task-card:hover {
-  transform: scaleX(1.01);
+  transform: scaleX(1.02);
 }
 
 .card-header{
@@ -231,7 +231,8 @@ form #importance{
 }
 
 @keyframes flash {
-  0% { background-color: yellow; }
+  0% { background-color: transparent; }
+  50% { background-color: yellow; }
   100% { background-color: transparent; }
 }
 
@@ -243,3 +244,19 @@ form #importance{
     from { box-shadow: 0 0 5px red; }
     to { box-shadow: 0 0 15px red; }
 }
+
+.card-remove-animation {
+  animation: removeCard 300ms ease forwards;
+}
+
+@keyframes removeCard {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+

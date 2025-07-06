@@ -70,6 +70,9 @@ form.addEventListener('submit', function(e) {
     closePanel();
     card.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
     card.classList.add('scroll-highlight');
+    setTimeout(() => {
+    card.classList.remove('scroll-highlight');
+    }, 1500); // vagy amilyen hosszú az animáció
 });
 
 //gets data from the form transformed to object and returns its extended version to match every property of the card
@@ -168,8 +171,15 @@ function extendMissingObjectParts(submitObject) {
     
     const deleteBtn = card.querySelector('.delete-button');
         deleteBtn.addEventListener('click', () => {
-        card.remove();
-        quickSave();
+
+        // Hozzáadjuk az animációs osztályt
+        card.classList.add('card-remove-animation');
+
+        // Várjuk, hogy az animáció véget érjen, majd töröljük
+        card.addEventListener('animationend', () => {
+            card.remove();
+            quickSave();
+        }, { once: true }); // csak egyszer fusson le
     });
     
     card.dataset.title = title;
