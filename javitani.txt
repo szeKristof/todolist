@@ -23,7 +23,7 @@ lap elhagyásánál mentés modul ablak jelenjen meg! és ne automatikus mentés
 utánanézni hogy console-ban mi az az RGB format hiba! <<<ráhagytam!! <<<
 aztán a chatGPT továbbfejlesztési javaslatai! < majd megkérdezem újra <<<
 
-
+aktívtask nem megy össze szélességben! javítani!!
 
 
 
