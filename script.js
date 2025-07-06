@@ -147,6 +147,7 @@ function extendMissingObjectParts(submitObject) {
     
     const toggle = card.querySelector('.done-toggle');
     toggle.addEventListener('change', (e) => {
+        e.stopPropagation();
         if (e.target.checked) {
             doneGroup.prepend(card);
             card.dataset.status = 'true';
@@ -156,12 +157,15 @@ function extendMissingObjectParts(submitObject) {
         }
         quickSave();
     });
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
     if(status){
         toggle.checked = true;
     }else{
         toggle.checked = false;
     }
-    toggle.dispatchEvent(new Event('change', { bubbles: true }));
+    toggle.dispatchEvent(new Event('change', { bubbles: false }));
 
     card.className = 'task-card';
     card.style.borderWidth = '2px';
@@ -177,7 +181,8 @@ function extendMissingObjectParts(submitObject) {
     
     
     const deleteBtn = card.querySelector('.delete-button');
-        deleteBtn.addEventListener('click', () => {
+        deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
 
         // Hozzáadjuk az animációs osztályt
         card.classList.add('card-remove-animation');

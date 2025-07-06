@@ -18,16 +18,14 @@ animáció a törlés gombnál! <
 felvillanás animációt kicsinosítani! <
 form tökéletesen nézzen ki elrendezés szempontból! <
 task területen valami elcsúszott, azt javítani! <
+modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás mellé! <
 
 
 
-
-
-egész tartalom megjelenhetne kattintásra modal ablakban! aminek van x-je, illetve semleges területen kattintva is kilép! 
 utánanézni hogy console-ban mi az az RGB format hiba! 
 aztán a chatGPT továbbfejlesztési javaslatai!
-modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás mellé! 
-lap elhagyásánál mentés modul ablak jelenjen meg! és ne automatikus mentés, bármi van!
+
+lap elhagyásánál mentés modul ablak jelenjen meg! és ne automatikus mentés, bármi van! 
 
 
 
