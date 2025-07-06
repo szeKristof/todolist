@@ -213,7 +213,7 @@ form #importance{
     transition: transform 0.2s ease;
     padding: 0.8rem;
     padding-bottom: 0.2rem;
-
+    cursor: pointer;
     display: flex;
     flex-direction: column;
 }
@@ -311,3 +311,69 @@ form #importance{
   }
 }
 
+
+
+
+
+
+
+
+
+.modal.hidden {
+      display: none;
+    }
+
+
+
+
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* sötét, de átlátszó háttér */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background-color: #f9f9f9; /* világos háttérszín */
+  padding: 2rem;
+  border-radius: 0rem;
+  width: 90vw;           /* az oldal 90%-a szélességben */
+  max-width: 700px;      /* max szélesség, hogy ne legyen túl nagy nagyon széles képernyőn */
+  height: 50vh;          /* az oldal 50%-a magasságban */
+  max-height: 450px;     /* max magasság, ha kell */
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-close svg {
+  stroke: red;
+  transition: stroke 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: red; 
+}
+
+.modal-close:hover svg {
+  stroke: white;
+}

@@ -1,6 +1,12 @@
 const activeGroup = document.querySelector('.activeTask');
 const doneGroup = document.querySelector('.doneTask');
 
+const modal = document.getElementById('card-modal');
+const modalContent = modal.querySelector('.modal-content');
+const modalClose = modal.querySelector('.modal-close');
+const modalTitle = modal.querySelector('.modal-title');
+const modalDesc = modal.querySelector('.modal-description');
+
 const forms = document.querySelector('.formField');
 const tasks = document.querySelector('.taskField');
 
@@ -72,7 +78,7 @@ form.addEventListener('submit', function(e) {
     card.classList.add('scroll-highlight');
     setTimeout(() => {
     card.classList.remove('scroll-highlight');
-    }, 1500); // vagy amilyen hosszú az animáció
+    }, 2000); // vagy amilyen hosszú az animáció
 });
 
 //gets data from the form transformed to object and returns its extended version to match every property of the card
@@ -182,6 +188,21 @@ function extendMissingObjectParts(submitObject) {
             quickSave();
         }, { once: true }); // csak egyszer fusson le
     });
+
+
+
+
+    card.addEventListener('click', () => {
+    const modal_title = title || 'No title available';
+    const modal_description = description || 'No description for this task available';
+    
+    modalTitle.textContent = modal_title;
+    modalDesc.textContent = modal_description;
+    modal.classList.remove('hidden');
+  });
+
+
+
     
     card.dataset.title = title;
     card.dataset.description = description;
@@ -315,6 +336,17 @@ function quickLoad(){
     console.log('loaded');
 }
 
+modal.addEventListener('click', (event) => {
+    modal.classList.add('hidden');
+});
+
+modalClose.addEventListener('click', (event) => {
+    modal.classList.add('hidden');
+});
+
+modalContent.addEventListener('click', (event) => {
+    event.stopPropagation();
+});
 
 //save and load event handlers
 window.addEventListener('DOMContentLoaded', () => {
@@ -335,5 +367,3 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('blur', () => {
   quickSave(true);
 });
-
-
