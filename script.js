@@ -99,21 +99,22 @@ function extendMissingObjectParts(submitObject) {
     let formattedDate = '';
     if (date) {
         const d = new Date(date);
-        const formatter = new Intl.DateTimeFormat('en-En', { year: 'numeric', month: 'long', day: 'numeric' });
-        formattedDate = formatter.format(d);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0'); // hónap 0-indexelt
+        const day = String(d.getDate()).padStart(2, '0');
+        formattedDate = `${year}.${month}.${day}.`;
     }
-
     // Formázott idő: 13:00 vagy 13-00
     let formattedTime = '';
     if (time) {
-        formattedTime = time.replace(':', ' : ');
+        formattedTime = time;
     }
 
     // Formázott óraszám: ha 0, üres; egyébként: "várható időtartam: 2 óra"
     let formattedHours = '';
     const parsedHours = parseInt(hours, 10);
     if (hours && parsedHours > 0) {
-        formattedHours = `Est. hours: ${parsedHours}`;
+        formattedHours = `Dur:${parsedHours}`;
     }
 
 

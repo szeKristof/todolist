@@ -18,6 +18,10 @@ body {
     margin: 1rem 0;
 }
 
+
+
+
+
 .floating-lane {
   position: fixed;
   top: 0;
@@ -85,6 +89,7 @@ button:disabled {
     border-radius: 2.5rem;
     padding: 0.2rem;
     gap: 0.3rem;
+    min-width: 298px;
 }
 
 .activeTask, .doneTask{
@@ -92,7 +97,6 @@ button:disabled {
     flex-direction: column;
     flex: 1;         /* egyenlő arány */
     border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
-    min-width: 298px;
     padding: 0.8rem;
     background-color: whitesmoke;
     border-radius: 2.3rem;
@@ -128,6 +132,7 @@ button:disabled {
     .page-title{
       display: none;
     }
+    
     .main-area{
       padding-top: 60px;
     }
@@ -177,10 +182,6 @@ form > input, form > textarea, form > select {
 
 #taskReminder, #isDone{
     width: 20%
-}
-
-#taskDate, #taskTime{
-    
 }
 
 form .row{
