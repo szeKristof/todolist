@@ -170,22 +170,38 @@ form button{
 form > input, form > textarea, form > select {
     width: 85%;
     border: 0.1rem solid #0e51a3;
-    border-radius: 3rem;
+    border-radius: 1rem;
     font-family: inherit;
 
 }
 
-#taskColor, #taskHours, #taskReminder, #isDone{
+#taskReminder, #isDone{
     width: 20%
 }
 
 #taskDate, #taskTime{
-    width: 40%;
+    
+}
+
+form .row{
+  display: flex;
+  flex-direction: row;
+}
+
+form #taskReminder, #isDone {
+  max-width: 45px;
+  max-height: 45px;
+}
+
+form #formOptions {
+  justify-content: space-around;
 }
 
 form #importance{
     display: flex;
     flex-direction: column;
+    padding-block: 0;
+    padding-inline: 0;
 }
 
 .task-card{
@@ -241,6 +257,8 @@ form #importance{
   display: flex;
   justify-content: space-between;
 }
+
+
 
 .delete-button {
   background-color: transparent;

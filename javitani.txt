@@ -25,7 +25,8 @@ utánanézni hogy console-ban mi az az RGB format hiba!
 form tökéletesen nézzen ki elrendezés szempontból! 
 aztán a chatGPT továbbfejlesztési javaslatai!
 modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás mellé! 
-lap elhagyásánál mentés modul ablak jelenjen meg! 
+lap elhagyásánál mentés modul ablak jelenjen meg! és ne automatikus mentés, bármi van!
+task területen valami elcsúszott, azt javítani! 
 
 
 

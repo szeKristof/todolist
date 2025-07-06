@@ -37,7 +37,7 @@
                 <input type="text" name="title" id="taskTitle" required>
 
                 <label for="taskDescription">Feladat leírása</label>
-                <textarea name="description" id="taskDescription"></textarea>
+                <textarea name="description" id="taskDescription" rows="4"></textarea>
 
                 <label for="taskDate">Határidő dátuma</label>
                 <input type="date" name="date" id="taskDate">
@@ -98,16 +98,21 @@
                 <input type="number" min="1" max="100" id="taskHours" name="hours">
 
 
+                <div class="row">
                 <label for="taskReminder">Kérek emlékeztetőt</label>
                 <input type="checkbox" id="taskReminder" name="reminder">
+                </div>
 
+                <div class="row">
                 <label for="isDone">Kész</label>
                 <input type="checkbox" class="done-toggle" name="isDone" id="isDone">
-                
+                </div>
 
-                <button type="submit">Feladat hozzáadása</button>
-                <button type="reset">Mezők kiürítése</button>
 
+                <div class="row" id="formOptions">
+                <button type="submit">➕ Add task</button>
+                <button type="reset">🚫 Reset</button>
+                </div>
             </form>
         </div>
 
