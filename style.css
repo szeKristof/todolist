@@ -1,13 +1,15 @@
 body {
   font-family: 'Nunito', sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 0.3rem;
   background: #f8f9fa;
   color: #333;
+
 }
 .main-area{
     display: flex;
     min-width: 298px;
+    padding-top: 90px;
 }
 .page-title{
     display: block;
@@ -15,6 +17,30 @@ body {
     font-size: 2.5rem;
     margin: 1rem 0;
 }
+
+.floating-lane {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white; /* vagy más háttérszín, hogy ne legyen átlátszó */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* finom árnyék a kiemeléshez */
+  z-index: 9999; /* fontos, hogy fölötte legyen más elemeknek */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floating-lane button{
+  padding: 0.5rem;
+  min-height: 20px;
+  min-width: 20px;
+}
+
+.floating-lane .save-area, .open-close-area {
+  padding: 0.5rem;
+}
+
 
 button {
   background-color: #007bff;
@@ -43,7 +69,6 @@ button:disabled {
 
 
 .formField{
-
     background-color: whitesmoke;
     padding: 0.2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -98,6 +123,13 @@ button:disabled {
     }
     .taskField{
         flex: 1;
+    }
+
+    .page-title{
+      display: none;
+    }
+    .main-area{
+      padding-top: 60px;
     }
 }
 

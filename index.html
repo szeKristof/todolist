@@ -10,17 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="page-title">
-        TO-DO List Application
-    </h1>
-    <button id="save-button">Save</button>
-    <label for="auto-save">
-    <input type="checkbox" id="auto-save"/>
-    Auto-Save
-    </label>
-    <button id="toggle-button-close">Close</button>
-    <button id="toggle-button-open">Open</button>
+    <div class="floating-lane">
+        <div class="open-close-area">
+            <button id="toggle-button-close">🔼 Close</button>
+            <button id="toggle-button-open">🔽 Open</button>
+        </div>
 
+        <h1 class="page-title">
+            TO-DO List Application
+        </h1>
+
+        <div class="save-area">
+            <button id="save-button">💾 Save</button>
+            <label for="auto-save">
+            <input type="checkbox" id="auto-save"/>
+                Auto-Save
+            </label>
+        </div>
+    </div>
     <div class="main-area">
         
 
