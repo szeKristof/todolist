@@ -18,6 +18,7 @@ autoSave.addEventListener('change', (e) => {
         localStorage.setItem('autosave', 'false');
         saveButton.disabled = false;
     }
+    quickSave(true);
 });
 
 
@@ -48,6 +49,20 @@ function openPanel(){
 const form = document.getElementById('taskAdder');
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+
+    if (!form.checkValidity()) {
+        const invalidFields = form.querySelectorAll(':invalid');
+        let message = "Hibás formátum. Ellenőrizd hogy mindent helyesen formátumban adtál-e meg!";
+
+        invalidFields.forEach(field => {
+            message += "\n";
+            message += `${field.name}: ${field.validationMessage}`;
+        });
+        // Ha bármelyik required mező üres vagy érvénytelen
+        alert(message);
+        return;
+    }
+
     let data = Object.fromEntries(new FormData(e.target).entries());
     data = extendMissingObjectParts(data);
     const card = createAndPlaceTaskCard(data, false);
@@ -75,7 +90,29 @@ function extendMissingObjectParts(submitObject) {
 }
 
 //gets a js cardValid object in parameter and returns a complete html element
-function createAndPlaceTaskCard({ title, description, date, time, type, priority, color, hours, reminder, status }, isRetrieve = true) {
+    function createAndPlaceTaskCard({ title, description, date, time, type, priority, color, hours, reminder, status }, isRetrieve = true) {
+
+    // Formázott dátum: 2013. február 12.
+    let formattedDate = '';
+    if (date) {
+        const d = new Date(date);
+        const formatter = new Intl.DateTimeFormat('en-En', { year: 'numeric', month: 'long', day: 'numeric' });
+        formattedDate = formatter.format(d);
+    }
+
+    // Formázott idő: 13:00 vagy 13-00
+    let formattedTime = '';
+    if (time) {
+        formattedTime = time.replace(':', ' : ');
+    }
+
+    // Formázott óraszám: ha 0, üres; egyébként: "várható időtartam: 2 óra"
+    let formattedHours = '';
+    const parsedHours = parseInt(hours, 10);
+    if (hours && parsedHours > 0) {
+        formattedHours = `Est. hours: ${parsedHours}`;
+    }
+
 
     const card = document.createElement('div');
     card.innerHTML = `
@@ -85,15 +122,15 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
                 <input type="checkbox" class="done-toggle" > Kész
             </label>
         </div>
-        <p><strong> ${type} </strong></p>
+        <span><strong> ${type} </strong></span>
 
         <label for="taskprogress" id="cardPriorityLabel">fontosság</label>
         <progress id="taskProgress" value="${priority}" max="4"></progress>
 
         <div class="row">
-            <span>${date}</span>
-            <span>${time}</span>
-            <span>${hours} h</span>
+            <span>${formattedDate}</span>
+            <span>${formattedTime}</span>
+            <span>${formattedHours}</span>
         </div>
         <button class="delete-button">🗑️ Törlés</button>
     `;
@@ -122,7 +159,7 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
     if (color && /^#[0-9A-Fa-f]{6}$/.test(color)) {
         card.style.border = `4px solid ${color}`;
     }
-    const bgColor = lightenColor(color, 65);
+    const bgColor = lightenColor(color);
     card.style.backgroundColor = `${bgColor}`;
 
     const cardTitle = card.querySelector('.card-title');
@@ -155,7 +192,7 @@ function createAndPlaceTaskCard({ title, description, date, time, type, priority
     return card;
 }
 
-function lightenColor(hex, percent = 70) {
+function lightenColor(hex, percent = 65) {
   // Töröljük a # jelet
   hex = hex.replace(/^#/, '');
 
@@ -173,8 +210,6 @@ function lightenColor(hex, percent = 70) {
 
   return `rgb(${newR}, ${newG}, ${newB})`;
 }
-
-
 
 //returns a json valid formatted string from the given object
 function stringFromObject(object){
@@ -224,11 +259,32 @@ function loadTasksFromJsonString(jsonString) {
     });
 }
 
+let originalTitle = document.title;
+
+
+function signalUnsavedChanges() {
+    document.title = '★ ' + originalTitle;
+    saveButton.classList.add('highlight');
+}
+
+
+function removeUnsavedChanges() {
+    document.title = originalTitle;
+    saveButton.classList.remove('highlight');
+
+}
+
+
+
 //saves the content of the page in localstorage
 function quickSave(forced = false){
     if(autoSave.checked || forced){
         localStorage.setItem('pageContent', saveAllTasksToJsonString());
         console.log('saved');
+        removeUnsavedChanges()
+    }
+    else{
+        signalUnsavedChanges();
     }
 }
 
@@ -256,17 +312,17 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('beforeunload', () => {
-  quickSave();
+  quickSave(true);
 });
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    quickSave();
+    quickSave(true);
   }
 });
 
 window.addEventListener('blur', () => {
-  quickSave();
+  quickSave(true);
 });
 
 

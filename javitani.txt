@@ -1,15 +1,31 @@
-kész felirat oldal betöltése után is jól mutassa hogy kész-e a kártya, ne csak a megnyomása után! 
-ne jelenjen meg a nyitás/zárás gomb is betöltés után! működjön jól mindig! 
+kész felirat oldal betöltése után is jól mutassa hogy kész-e a kártya, ne csak a megnyomása után! <
+ne jelenjen meg a nyitás/zárás gomb is betöltés után! működjön jól mindig! <
 utánanézni hogy console-ban mi az az RGB format hiba! 
-h ne látszódjon az óránál, ha nincs megadva! 
-felülre kerüljön az új elem, ezt megoldani! 
+h ne látszódjon az óránál, ha nincs megadva! <
+felülre kerüljön az új elem, ezt megoldani! <
 ezután jöhet a css csinosítása! 
 kártya tökéletesen nézzen ki! elrendezés szempontból!
 form tökéletesen nézzen ki elrendezés szempontból! 
-hoverre kis fehér mezőben jelenjen meg a leírás! 
-gombokhoz kis emoji mindegyikhez ami kifejezi a funkcióját! 
+hoverre kis fehér mezőben jelenjen meg a leírás! <
+gombokhoz kis emoji mindegyikhez ami kifejezi a funkcióját!  
 ha van nem mentett elem, akkor azt jelezni mondjuk egyszerű csillag ikonnal!
 létrehozott elemnél fókuszba kerülést és villanást leellenőrizni! 
 aztán a chatGPT továbbfejlesztési javaslatai!
 el nem mentett változtatásokat jelezhetné!! extra ötlet! 
 egész tartalom megjelenhetne kattintásra modal ablakban! aminek van x-je, illetve semleges területen kattintva is kilép! 
+
+
+
+
+
+
+fontossag, tipus cim között ne legyen ekkora térköz! <
+kártyánál border radiusokat összehozni sarkoknál! <
+címet kötelező mezővé tenni formnál! <
+form kinézetét összehozni! 
+jelezni a függvényekben az elmentetlen munkát! <
+nagyobb kiugrás animáció a kártyáknál! 
+animáció a törlés gombnál! 
+felvillanás animációt kicsinosítani! 
+modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás mellé! 
+lap elhagyásánál mentés modul ablak jelenjen meg! 
