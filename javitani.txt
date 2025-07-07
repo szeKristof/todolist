@@ -25,12 +25,14 @@ aztán a chatGPT továbbfejlesztési javaslatai! < majd megkérdezem újra <<<
 aktívtask nem megy össze szélességben! javítani!! <<<
 add task + emoji legyen más színű!! <<<
 ne open legyen hanem add!! <<<
+auto save kapjon border és legyen kattintható!! <<<
+legyen még jobban kiugró a kártya!! <<<
 
 
 
-auto save kapjon border és legyen kattintható!! 
 összes kész checkbox legyen slider!! 
 utolsó simítások!! pl angolra átírni!! 
+
 
 
 

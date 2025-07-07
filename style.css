@@ -45,6 +45,27 @@ body {
   padding: 0.5rem;
 }
 
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0rem;
+  border: 2px solid #007bff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkbox-label:hover {
+  background-color: #e9f2ff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+.checkbox-label input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 
 button {
   background-color: #007bff;
@@ -236,7 +257,7 @@ form #importance{
 }
 
 .task-card:hover {
-  transform: scaleX(1.02);
+  transform: scaleX(1.03);
 }
 
 .card-header{
