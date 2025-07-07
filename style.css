@@ -96,6 +96,7 @@ button:disabled {
     display: flex;
     flex-direction: column;
     flex: 1;         /* egyenlő arány */
+    min-width: 0;
     border: 2px solid #a118bd; /* csak a láthatóság kedvéért */
     padding: 0.8rem;
     background-color: whitesmoke;
