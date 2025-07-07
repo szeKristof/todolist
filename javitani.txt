@@ -27,10 +27,10 @@ add task + emoji legyen más színű!! <<<
 ne open legyen hanem add!! <<<
 auto save kapjon border és legyen kattintható!! <<<
 legyen még jobban kiugró a kártya!! <<<
+összes kész checkbox legyen slider!! <<<
 
 
 
-összes kész checkbox legyen slider!! 
 utolsó simítások!! pl angolra átírni!! 
 
 
