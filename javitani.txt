@@ -22,10 +22,18 @@ modul ablakot megcsinálni minimál designnal! elég pár részlet a leírás me
 lap elhagyásánál mentés modul ablak jelenjen meg! és ne automatikus mentés, bármi van! <<nem kell, nem lehet modulablak! így marad<<<
 utánanézni hogy console-ban mi az az RGB format hiba! <<<ráhagytam!! <<<
 aztán a chatGPT továbbfejlesztési javaslatai! < majd megkérdezem újra <<<
+aktívtask nem megy össze szélességben! javítani!! <<<
+add task + emoji legyen más színű!! <<<
+ne open legyen hanem add!! <<<
 
-aktívtask nem megy össze szélességben! javítani!!
-add task + emoji legyen más színű!!
-ne open legyen hanem add!! 
+
+
+auto save kapjon border és legyen kattintható!! 
+összes kész checkbox legyen slider!! 
+utolsó simítások!! pl angolra átírni!! 
+
+
+
 
 
 

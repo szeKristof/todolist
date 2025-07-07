@@ -70,6 +70,17 @@ button:disabled {
   display: none;
 }
 
+.light-button{
+  color: #007bff;
+  background-color: whitesmoke;
+  border: 0.1rem, solid, #0056b3;
+}
+
+.light-button:hover{
+  background-color: #007bff;
+  color: whitesmoke;
+}
+
 
 
 .formField{
