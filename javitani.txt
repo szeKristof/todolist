@@ -31,6 +31,7 @@ legyen még jobban kiugró a kártya!! <<<
 
 
 
+loading asincron ha nagyon sok elem van!!! 
 utolsó simítások!! pl angolra átírni!! 
 
 

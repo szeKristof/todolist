@@ -181,13 +181,7 @@ function extendMissingObjectParts(submitObject) {
         event.stopPropagation();
     });
 
-    if(status){
-        toggleCheckbox.checked = true;
-    }else{
-        toggleCheckbox.checked = false;
-    }
-    // toggle.dispatchEvent(new Event('change', { bubbles: false }));
-    toggleCheckbox.dispatchEvent(new Event('change'));
+    
 
 
     card.className = 'task-card';
@@ -242,6 +236,13 @@ function extendMissingObjectParts(submitObject) {
     card.dataset.hours = hours.toString();
     card.dataset.reminder = reminder.toString(); // 'true' vagy 'false'
     card.dataset.status = status.toString();     // 'true' vagy 'false'
+
+    if(status){
+        toggleCheckbox.checked = true;
+    }else{
+        toggleCheckbox.checked = false;
+    }
+    
 
     if(status){
         isRetrieve ? doneGroup.appendChild(card) : doneGroup.prepend(card);
