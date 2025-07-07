@@ -362,35 +362,14 @@ async function quickSave(forced = false){
 
 
 
-async function quickSave(forced = false) {
-    if (autoSave.checked || forced) {
-        let loaderTimeout;
-        let loaderVisible = false;
-
-        // Loader csak akkor jelenik meg, ha 100ms alatt nem végez a mentés
-        const loaderPromise = new Promise(resolve => {
-            loaderTimeout = setTimeout(() => {
-                showLoader();
-                loaderVisible = true;
-                resolve();
-            }, 100);
-        });
-
-        // Elindítjuk párhuzamosan a mentést és a loader késleltetését
-        const savePromise = (async () => {
-            localStorage.setItem('pageContent', saveAllTasksToJsonString());
-            console.log('saved');
-            removeUnsavedChanges();
-        })();
-
-        // Várunk mindkettő végére (ha a mentés gyors, akkor loader meg sem jelenik)
-        await Promise.all([loaderPromise, savePromise]);
-
-        // Ha loader megjelent, akkor utólag el is kell tüntetni
-        if (loaderVisible) {
-            hideLoader();
-        }
-    } else {
+//saves the content of the page in localstorage
+function quickSave(forced = false){
+    if(autoSave.checked || forced){
+        localStorage.setItem('pageContent', saveAllTasksToJsonString());
+        console.log('saved');
+        removeUnsavedChanges();
+    }
+    else{
         signalUnsavedChanges();
     }
 }
