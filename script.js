@@ -23,11 +23,11 @@ autoSave.addEventListener('change', (e) => {
     if(e.target.checked){
         localStorage.setItem('autosave', 'true');
         saveButton.disabled = true;
+        quickSave(true);
     }else{
         localStorage.setItem('autosave', 'false');
         saveButton.disabled = false;
     }
-    quickSave(true);
 });
 
 
