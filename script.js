@@ -1,4 +1,5 @@
 const loaderScreen = document.querySelector('.loader-screen');
+const saveToast = document.getElementById('save-toast');
 
 const activeGroup = document.querySelector('.activeTask');
 const doneGroup = document.querySelector('.doneTask');
@@ -339,24 +340,7 @@ function removeUnsavedChanges() {
 
 
 
-//saves the content of the page in localstorage
-async function quickSave(forced = false){
-    if(autoSave.checked || forced){
-        showLoader();
-        await new Promise(resolve => setTimeout(resolve, 100)); // kis szünet, hogy biztos megjelenjen a loader
 
-        localStorage.setItem('pageContent', saveAllTasksToJsonString());
-        console.log('saved');
-        removeUnsavedChanges();
-
-        
-    
-        hideLoader();
-    }
-    else{
-        signalUnsavedChanges();
-    }
-}
 
 
 
@@ -367,6 +351,7 @@ function quickSave(forced = false){
     if(autoSave.checked || forced){
         localStorage.setItem('pageContent', saveAllTasksToJsonString());
         console.log('saved');
+        flashSaveLabel();
         removeUnsavedChanges();
     }
     else{
@@ -404,6 +389,29 @@ function hideLoader(){
     loaderScreen.classList.add('hidden');
 }
 
+let saveToastTimeout;
+function flashSaveLabel() {
+  showSaveLabel();
+
+  // Ha már volt egy timeout, töröljük
+  if (saveToastTimeout) {
+    clearTimeout(saveToastTimeout);
+  }
+
+  // Új időzítő beállítása
+  saveToastTimeout = setTimeout(() => {
+    hideSaveLabel();
+    saveToastTimeout = null;
+  }, 2000);
+}
+
+function hideSaveLabel(){
+    saveToast.classList.remove('show');
+}
+function showSaveLabel(){
+    saveToast.classList.add('show');
+}
+
 modal.addEventListener('click', (event) => {
     modal.classList.add('hidden');
 });
@@ -421,5 +429,3 @@ window.addEventListener('DOMContentLoaded', () => {
   quickLoad();
   closePanel();
 });
-
-

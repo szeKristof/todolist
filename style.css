@@ -588,9 +588,37 @@ form #importance{
 }
 
 
+.save-toast {
+  height: 20px;
+  font-size: 15px;
+  position: fixed;
+  top: -30px; /* kezdő pozíció - rejtve */
+  left: 90px;
+  background-color: #323232;
+  color: white;
+  padding: 4px 4px;
+  border-radius: 0.2rem;
+  font-size: 0.6rem;
+  transition: top 0.4s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Látható állapot - animált beúszás */
+.save-toast.show {
+  top: 0;
+}
 
 
 
-.hidden {
+
+
+
+
+
+
+.hidden{
   display: none;
 }
