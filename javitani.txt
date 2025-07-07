@@ -33,22 +33,12 @@ SAVED egy kis fülön ugporjon elő, ne consoleban!!! <<<
 alulra kilóg a donetask! javítani!! <<<
 Formot is stílusossá ami a hátteret meg bordert illeti! <<<
 autosave csak bepipálva mentsen!! <<<
+utolsó simítások!! pl angolra átírni!! <<<
+htmlből kiszedi textcontent-eket!! <<<
 
 
 
 
-utolsó simítások!! pl angolra átírni, 
-htmlből kiszedi textcontent-eket, 
-
-
-
-
-
-
-
-
-
-
-
-
-
+kommenteket átnézni, szépen mindent kommentelni!! 
+kiszedni külön fájlba ami logikailag oda tartozik!! 
+rendes dokumentációt pl. ReadME csinálni githubhoz!! 

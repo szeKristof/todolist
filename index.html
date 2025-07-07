@@ -35,78 +35,75 @@
 
         <div class="formField">
             <form action="" method="post" id="taskAdder">
-                <label for="taskTitle">Feladat címe</label>
+                <label for="taskTitle">Task title</label>
                 <input type="text" name="title" id="taskTitle" required>
 
-                <label for="taskDescription">Feladat leírása</label>
+                <label for="taskDescription">Task description</label>
                 <textarea name="description" id="taskDescription" rows="4"></textarea>
 
-                <label for="taskDate">Határidő dátuma</label>
+                <label for="taskDate">Deadline date</label>
                 <input type="date" name="date" id="taskDate">
 
-                <label for="taskTime">Határidő időpontja</label>
+                <label for="taskTime">Deadline time</label>
                 <input type="time" name="time" id="taskTime">
 
                 
                 <div class="taskOptions">
-                    <label for="taskType">Munkakörnyezet</label>
+                    <label for="taskType">Task type</label>
                     <select id="taskType" name="type">
-                        <option>Munkahelyi</option>
-                        <option>Iskolai</option>
-                        <option>Személyes</option>
-                        <option>Családi</option>
-                        <option>Hobbi</option>
+                        <option>Job</option>
+                        <option>School</option>
+                        <option>Personal</option>
+                        <option>Family</option>
+                        <option>Hobby</option>
                     </select>
                 </div>
 
                 <fieldset id="importance">
-                    <legend>Fontosság</legend>
+                    <legend>Priority</legend>
 
                         <label>
                         <input type="radio" name="priority" value="0">
-                        Extra Alacsony
+                        Extra Low
                         </label>
 
                         <label>
                         <input type="radio" name="priority" value="1">
-                        Alacsony
+                        Low
                         </label>
 
                         <label>
                         <input type="radio" name="priority" value="2">
-                        Közepes
+                        Medium
                         </label>
 
                         <label>
                         <input type="radio" name="priority" value="3">
-                        Magas
+                        High
                         </label>
 
                         <label>
                         <input type="radio" name="priority" value="4">
-                        Extra Magas
+                        Extra High
                         </label>
 
                 </fieldset>
 
-                <label for="taskColor">Feladat színe</label>
+                <label for="taskColor">Task color</label>
                 <input type="color" id="taskColor" name="color">
                 
-                <!-- 
-                <label for="taskImage">Kép feltöltése</label>
-                <input type="file" id="taskImage" name="taskImage" accept="image/*"> -->
                 
-                <label for="taskHours">Várható időtartam(órában)</label>
+                <label for="taskHours">Estimated duration</label>
                 <input type="number" min="1" max="100" id="taskHours" name="hours">
 
 
                 <div class="row">
-                <label for="taskReminder">Kérek emlékeztetőt</label>
+                <label for="taskReminder">Need reminder</label>
                 <input type="checkbox" id="taskReminder" name="reminder">
                 </div>
 
                 <div class="row">
-                <label for="isDone">Kész</label>
+                <label for="isDone">Already done</label>
                 <input type="checkbox" class="form-done-toggle" name="isDone" id="isDone">
                 </div>
 
@@ -120,10 +117,10 @@
 
         <div class="taskField">
             <div class="activeTask">
-                active Tasks
+                
             </div>
             <div class="doneTask">
-                done Tasks
+                
             </div>
         </div>
     </div>
@@ -144,8 +141,8 @@
                 </svg>
             </button>
 
-            <h2 class="modal-title">Feladat címe</h2>
-            <p class="modal-description">Leírás...</p>
+            <h2 class="modal-title">Task title</h2>
+            <p class="modal-description">Description...</p>
         </div>
     </div>
 
