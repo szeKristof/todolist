@@ -30,10 +30,11 @@ legyen még jobban kiugró a kártya!! <<<
 összes kész checkbox legyen slider!! <<<
 loading asincron ha nagyon sok elem van!!! <<<
 SAVED egy kis fülön ugporjon elő, ne consoleban!!! <<<
+alulra kilóg a donetask! javítani!! <<<
 
 
 
-alulra kilóg a donetask! javítani!! 
+
 utolsó simítások!! pl angolra átírni!!
 
 

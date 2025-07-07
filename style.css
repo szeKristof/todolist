@@ -120,6 +120,7 @@ button:disabled {
     gap: 0.3rem;
     min-width: 298px;
     background-color: rgb(235, 232, 225);
+    align-items: stretch;
 }
 
 .activeTask, .doneTask{
@@ -133,7 +134,7 @@ button:disabled {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
     gap: 1rem;
     min-height: 10rem;
-    height: min-content;
+    max-height: fit-content;
 }
 
 .activeTask{
