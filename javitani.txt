@@ -32,13 +32,14 @@ loading asincron ha nagyon sok elem van!!! <<<
 SAVED egy kis fülön ugporjon elő, ne consoleban!!! <<<
 alulra kilóg a donetask! javítani!! <<<
 Formot is stílusossá ami a hátteret meg bordert illeti! <<<
+autosave csak bepipálva mentsen!! <<<
 
 
 
 
 utolsó simítások!! pl angolra átírni, 
 htmlből kiszedi textcontent-eket, 
-autosave csak bepipálva mentsen!!
+
 
 
 
