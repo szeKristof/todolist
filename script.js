@@ -1,3 +1,5 @@
+const loaderScreen = document.querySelector('.loader-screen');
+
 const activeGroup = document.querySelector('.activeTask');
 const doneGroup = document.querySelector('.doneTask');
 
@@ -338,31 +340,89 @@ function removeUnsavedChanges() {
 
 
 //saves the content of the page in localstorage
-function quickSave(forced = false){
+async function quickSave(forced = false){
     if(autoSave.checked || forced){
+        showLoader();
+        await new Promise(resolve => setTimeout(resolve, 100)); // kis szünet, hogy biztos megjelenjen a loader
+
         localStorage.setItem('pageContent', saveAllTasksToJsonString());
         console.log('saved');
-        removeUnsavedChanges()
+        removeUnsavedChanges();
+
+        
+    
+        hideLoader();
     }
     else{
         signalUnsavedChanges();
     }
 }
 
+
+
+
+
+async function quickSave(forced = false) {
+    if (autoSave.checked || forced) {
+        let loaderTimeout;
+        let loaderVisible = false;
+
+        // Loader csak akkor jelenik meg, ha 100ms alatt nem végez a mentés
+        const loaderPromise = new Promise(resolve => {
+            loaderTimeout = setTimeout(() => {
+                showLoader();
+                loaderVisible = true;
+                resolve();
+            }, 100);
+        });
+
+        // Elindítjuk párhuzamosan a mentést és a loader késleltetését
+        const savePromise = (async () => {
+            localStorage.setItem('pageContent', saveAllTasksToJsonString());
+            console.log('saved');
+            removeUnsavedChanges();
+        })();
+
+        // Várunk mindkettő végére (ha a mentés gyors, akkor loader meg sem jelenik)
+        await Promise.all([loaderPromise, savePromise]);
+
+        // Ha loader megjelent, akkor utólag el is kell tüntetni
+        if (loaderVisible) {
+            hideLoader();
+        }
+    } else {
+        signalUnsavedChanges();
+    }
+}
+
 //loads the content of the page from localstorage
-function quickLoad(){
+async function quickLoad() {
+    showLoader();
+    await new Promise(resolve => setTimeout(resolve, 1000)); // kis szünet, hogy biztos megjelenjen a loader
+
     const content = localStorage.getItem('pageContent');
-    if(content){
+    if (content) {
         loadTasksFromJsonString(content);
     }
 
     const autosave = localStorage.getItem('autosave');
-    if(autosave === 'true'){
+    if (autosave === 'true') {
         autoSave.checked = true;
     }
-    autoSave.dispatchEvent(new Event('change', { bubbles: true }));
+    autoSave.dispatchEvent(new Event('change', { bubbles: false }));
 
     console.log('loaded');
+    
+    hideLoader();
+}
+
+
+function showLoader(){
+    loaderScreen.classList.remove('hidden');
+}
+
+function hideLoader(){
+    loaderScreen.classList.add('hidden');
 }
 
 modal.addEventListener('click', (event) => {

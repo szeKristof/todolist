@@ -28,11 +28,12 @@ ne open legyen hanem add!! <<<
 auto save kapjon border és legyen kattintható!! <<<
 legyen még jobban kiugró a kártya!! <<<
 összes kész checkbox legyen slider!! <<<
+loading asincron ha nagyon sok elem van!!! <<<
 
 
 
-loading asincron ha nagyon sok elem van!!! 
-utolsó simítások!! pl angolra átírni!! 
+
+utolsó simítások!! pl angolra átírni!!
 
 
 

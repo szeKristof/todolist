@@ -29,7 +29,7 @@ body {
   width: 100%;
   background: white; /* vagy más háttérszín, hogy ne legyen átlátszó */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* finom árnyék a kiemeléshez */
-  z-index: 9999; /* fontos, hogy fölötte legyen más elemeknek */
+  z-index: 100; /* fontos, hogy fölötte legyen más elemeknek */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,9 +87,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.hidden {
-  display: none;
-}
 
 .light-button{
   color: #007bff;
@@ -552,4 +549,48 @@ form #importance{
   left: calc(100% - var(--circle-diameter) - var(--switch-offset));
   -webkit-box-shadow: var(--circle-checked-shadow);
   box-shadow: var(--circle-checked-shadow);
+}
+
+
+.loader-screen{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 50% átlátszó fekete */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FF3D00;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: #fff;
+  transform: rotate(0deg) translate(30px);
+  animation: rotate 1s ease infinite;
+}
+.loader:after {
+  animation-delay: 0.5s
+}
+@keyframes rotate {
+  100% {transform: rotate(360deg) translate(30px)}
+}
+
+
+
+
+
+.hidden {
+  display: none;
 }
