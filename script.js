@@ -359,16 +359,4 @@ window.addEventListener('DOMContentLoaded', () => {
   closePanel();
 });
 
-window.addEventListener('beforeunload', () => {
-  quickSave(true);
-});
 
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    quickSave(true);
-  }
-});
-
-window.addEventListener('blur', () => {
-  quickSave(true);
-});
